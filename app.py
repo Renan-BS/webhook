@@ -10,7 +10,7 @@ def api_root():
 @app.route('/webhook', methods=['POST'])
 def respond():
     dados = request.json
-    print(dados)
+    print(dados.keys())
     id = getIdFromEmailZendesk(dados['previous']['email'][0]['value'])
     base_url = 'https://bsinvestimentos.zendesk.com/'
     if id is not None:
