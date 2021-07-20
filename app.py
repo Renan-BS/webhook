@@ -10,7 +10,7 @@ def api_root():
 @app.route('/webhook', methods=['POST'])
 def respond():
     dados = request.json
-    print(dados)
+    print(dados['current'])
     id = getIdFromEmailZendesk(dados['previous']['email'][0]['value'])
     dicio = {"user": {"user_fields": {'corretagem_ultimo_mes':'teste'}}}
     base_url = 'https://bsinvestimentos.zendesk.com/'
