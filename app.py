@@ -12,8 +12,8 @@ def respond():
     if request.method == 'POST':
         print('To aqui')
         if request.headers['Content-Type'] == 'application/json':
-            #return json.dumps(request.json)
-            return Response(status=200)
+            return json.dumps(request.json)
+            #return Response(status=200)
     else: 
         return Response(status=200)
     
