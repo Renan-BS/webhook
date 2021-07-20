@@ -6,16 +6,12 @@ app = Flask(__name__)
 def api_root():
     return 'Tá funcionando!'
 
-@app.route('/webhook', methods=['GET', 'POST'])
+@app.route('/webhook', methods=['POST'])
 def respond():
-    print(request.json)
-    if request.method == 'POST':
-        print('To aqui')
-        if request.headers['Content-Type'] == 'application/json':
-            return json.dumps(request.json)
-            #return Response(status=200)
-    else: 
-        return Response(status=200)
+    print(request.json())
+    print('To aqui')
+    if request.headers['Content-Type'] == 'application/json':
+        return json.dumps(request.json())
     
 if __name__=='__main__':
     app.run()
