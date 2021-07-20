@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def api_root(dados):
-return 'Tá funcionando!'
+    return 'Tá funcionando!'
 
 @app.route('/webhook', methods=['POST'])
 def respond():
