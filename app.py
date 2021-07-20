@@ -10,6 +10,7 @@ def api_root():
 def respond():
     print(request.json)
     if request.method == 'POST':
+        print('To aqui')
         if request.headers['Content-Type'] == 'application/json':
             #return json.dumps(request.json)
             return Response(status=200)
