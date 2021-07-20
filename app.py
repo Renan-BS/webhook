@@ -1,4 +1,4 @@
-from flask import Flask, request, Response, json
+from flask import Flask, request, Response, json, jsonify
 
 app = Flask(__name__)
 
@@ -9,7 +9,9 @@ return 'Tá funcionando!'
 @app.route('/webhook', methods=['POST'])
 def respond():
     if request.headers['Content-Type'] == 'application/json':
-        return json.dumps(request.json)
+        data = request.json
+        return jsonify(data)
+
     
 if __name__=='__main__':
     app.run()
