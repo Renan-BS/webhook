@@ -16,6 +16,7 @@ def respond():
     if id is not None:
         r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), data=json.dumps({'corretagem_ultimo_mes':'teste'}), headers={"Content-Type": "application/json"})
         return Response(status=200)
+    else: return Response(status=200)
 
 def getIdFromEmailZendesk(email):
     base_url = 'https://bsinvestimentos.zendesk.com/'
