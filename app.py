@@ -8,9 +8,8 @@ def api_root():
 
 @app.route('/webhook', methods=['POST'])
 def respond():
-    if request.headers['Content-Type'] == 'application/json':
-        data = request.json
-        return jsonify(data)
+    request_data = request.get_json()
+    return "{}".format(request_data)
 
     
 if __name__=='__main__':
