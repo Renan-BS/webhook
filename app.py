@@ -67,7 +67,7 @@ def trataTelefone(dado, campo):
         return valor
 
 def MontaDicionario(dado):
-    dicio = {"user":{"user_fields":{}}}
+    dicio = {"user":{}}
     dicio['user']['phone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04'),
     return json.dumps(dicio)
     
