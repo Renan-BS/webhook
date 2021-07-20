@@ -12,7 +12,7 @@ def respond():
     dados = request.json
     print(dados.keys())
     id = getIdFromEmailZendesk(dados['previous']['email'][0]['value'])
-    dicio = {"user":{'corretagem_ultimo_mes':'teste'}}
+    dicio = {"user": {"user_fields": {'corretagem_ultimo_mes':'teste'}}}
     base_url = 'https://bsinvestimentos.zendesk.com/'
     if id is not None:
         r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), data=json.dumps(dicio), headers={"Content-Type": "application/json"})
