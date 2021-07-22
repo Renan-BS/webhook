@@ -62,11 +62,12 @@ def trataTelefone(dado, campo):
     if dado[campo] is None:
         return None
     else:
-        lista = re.findall(r"\d+", (dado[campo]))
-        valor = ''.join(lista)
-        valor = '55' + valor
-        #valor = int(float(valor))
-        return valor
+        telefone = ''.join([t for t in dado[campo] if t.isdigit()])
+        if telefone[0:2] == '55':
+            return int(telefone)
+        else:
+            telefone = '55' + telefone 
+            return int(telefone)
 
 def MontaDicionario(dado):
     dicio = {"user":{'user_fields':{}}}
