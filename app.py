@@ -52,9 +52,9 @@ def respond():
     base_url = 'https://bsinvestimentos.zendesk.com/'
     if id is not None:
         
-        #r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), data=dicio, headers={"Content-Type": "application/json"})
-        #print(r.json())
-        #print('teste', r.status_code)
+        r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), data=dicio, headers={"Content-Type": "application/json"})
+        print(r.json())
+        print('teste', r.status_code)
         return Response(status=200)
     else: return Response(status=200)
 
@@ -66,13 +66,11 @@ def trataTelefone(dado, campo):
         valor = ''.join(lista)
         valor = '55' + valor
         valor = int(float(valor))
-        print(valor)
         return valor
 
 def MontaDicionario(dado):
     dicio = {"user":{}}
     dicio['user']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
-    print(dicio)
     return json.dumps(dicio)
     
 
