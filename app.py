@@ -65,7 +65,7 @@ def trataTelefone(dado, campo):
         lista = re.findall(r"\d+", (dado[campo]))
         valor = ''.join(lista)
         valor = '55' + valor
-        valor = int(float(valor))
+        #valor = int(float(valor))
         return valor
 
 def MontaDicionario(dado):
