@@ -5,6 +5,7 @@ import re
 app = Flask(__name__)
 
 chaves = {
+    
     '0a2c56b54cfb002b1baeb40d8ae71ea82d92dff1': 'cliente_desde',
     '7475d515fa7500fdcffb3785ed167db9559a4d74': 'sencon_ultimo_credito',
     'f6a357cb300ec5ab6c26301c4de721c310631b81': 'patrimnio_declarado',
