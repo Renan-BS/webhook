@@ -95,6 +95,7 @@ def trataTelefone(dado, campo):
             return int(valor)"""
 
 def Ancestors(dado,campo):
+    print(dado[chaves_inversas[campo]])
     if dado[chaves_inversas[campo]] is None:
         return None
     else:
