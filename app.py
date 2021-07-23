@@ -1,6 +1,7 @@
 from flask import Flask, request, Response, json
 import httpx
 import re
+import datetime
 
 app = Flask(__name__)
 
@@ -37,11 +38,29 @@ chaves = {
 
 chaves_inversas = {v: k for k, v in chaves.items()}
 
+simnao = {'Sim':'sim', "'-":'não', 'Não':'não', None:'não', '133':'sim', '134':'não'}
+
+perfil_dict = {
+    'Agressivo':'cliente_agressivo',
+    'Não Preenchido': '0', 
+    'Moderado': 'cliente_moderado',
+    'Conservador': 'cliente_conservador',
+    "'-":'0',
+    '':'0',
+    '-':'0',
+    None:'0'
+}
+
+contas_duplicadas = {
+    'Sim': 'sim_cd', 
+    'Não': 'nao_cd'
+}
+
 @app.route('/')
 def api_root():
     return 'Tá funcionando!'
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/update', methods=['POST'])
 def respond():
     dados = request.json
     print(dados.keys())
@@ -51,12 +70,12 @@ def respond():
     print(dicio)
     base_url = 'https://bsinvestimentos.zendesk.com/'
     if id is not None:
-        
         r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), data=dicio, headers={"Content-Type": "application/json"})
         print(r.json())
         print('teste', r.status_code)
         return Response(status=200)
-    else: return Response(status=200)
+    else: 
+        return Response(status=200)
 
 def trataTelefone(dado, campo):
     if dado[campo] is None:
@@ -74,7 +93,10 @@ def trataTelefone(dado, campo):
 
 def MontaDicionario(dado):
     dicio = {"user":{'user_fields':{}}}
-    dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
+    #dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
+    dicio['user']['user_fields']['cliente_ultima_atualizacao'] = datetime.datetime.now().isoformat()
+    #dicio['user']['user_fields']['cliente_desde'] = dado[chaves_inversas['cliente_desde']]
+    
     return json.dumps(dicio)
     
 
