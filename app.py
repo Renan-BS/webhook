@@ -94,12 +94,66 @@ def trataTelefone(dado, campo):
             valor = '55' + valor 
             return int(valor)"""
 
+def Ancestors(dado,campo):
+    if dado[chaves_inversas[campo]] is None:
+        return None
+    else:
+        return dado[chaves_inversas[campo]]['name']
+
+def trataFloat(dado, campo):
+    if dado[chaves_inversas[campo]] is None:
+        return None
+    else: 
+        return float(dado[chaves_inversas[campo]])
+
+def trataStatus(dado, campo):
+    if dado[chaves_inversas['status']] == '3':
+        return 'cliente_ativo'
+    else: return 'cliente_inativo'
+
+def trataClass(dado, campo, campo2):
+    if dado[campo] is None:
+        c1 = 0
+    else:
+        c1 = int(dado[campo])
+    if dado[campo2] is None:
+        c2 = 0
+    else:
+        c2 = int(dado[campo2])
+    return str(max(c1, c2))
+
 def MontaDicionario(dado):
     dicio = {"user":{'user_fields':{}}}
     dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
     dicio['user']['user_fields']['cliente_ultima_atualizacao'] = datetime.datetime.now().isoformat()
-    
     dicio['user']['user_fields']['cliente_desde'] = dado[chaves_inversas['cliente_desde']]
+    dicio['user']['sencon_ultimo_credito'] = dado[chaves_inversas['sencon_ultimo_credito']]
+    dicio['user']['nome_cliente'] = dado[chaves_inversas['nome_cliente']]
+    dicio['user']['email_xp'] = dado[chaves_inversas['email']][0]['value']
+    dicio['user']['atendimento_corporate'] = Ancestors(dado, 'atendimento_corporate')
+    dicio['user']['cliente_atendimento_alocacao'] = Ancestors(dado, 'cliente_atendimento_alocacao')
+    dicio['user']['cliente_atendimento_banker'] = Ancestors(dado, 'cliente_atendimento_banker')
+    dicio['user']['cliente_atendimento_private'] = Ancestors(dado, 'cliente_atendimento_private')
+    dicio['user']['cliente_atendimento_rv'] = Ancestors(dado, 'cliente_atendimento_rv')
+    dicio['user']['cliente_assessor'] = Ancestors(dado, 'cliente_assessor')
+    dicio['user']['cliente_campanha_atual'] = dado[chaves_inversas['cliente_campanha_atual']]
+    dicio['user']['cliente_captado_por'] = Ancestors(dado, 'cliente_captado_por')
+    dicio['user']['cliente_lead'] = dado[chaves_inversas['cliente_lead']]
+    dicio['user']['corretagem_ultimo_mes'] = dado[chaves_inversas['corretagem_ultimo_mes']]
+    dicio['user']['cpf_cnpj'] = dado[chaves_inversas['cpf_cnpj']]
+    dicio['user']['multiplas_contas'] = dado[chaves_inversas['multiplas_contas']]
+    dicio['user']['patrimnio_declarado'] = trataFloat(dado, 'patrimnio_declarado')
+    dicio['user']['saldo_em_'] = trataFloat(dado, 'saldo_em_')
+    dicio['user']['patrimnio_xp'] = trataFloat(dado, 'patrimnio_xp')
+    dicio['user']['status'] = trataStatus(dado, 'status')
+    dicio['user']['cliente_perfil_do_cliente'] = perfil_dict[dado[chaves_inversas['cliente_perfil_do_cliente']]]
+    dicio['user']['sencon_beneficio'] = simnao[dado[chaves_inversas['sencon_beneficio']]]
+    dicio['user']['nivel_classificacao'] = 'nivel_' + trataClass(dado, '9011d0f0a699759b313f5245877fc704926ab064','754d3639b9705d33a4b664ddab5466026597ef60')
+    dicio['user']['whatsapp'] = dado[chaves_inversas['whatsapp']]
+    dicio['user']['cod_cliente'] =  dado[chaves_inversas['cod_cliente']]
+    dicio['user']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
+    dicio['user']['rd_rlp_ativo'] = dado[chaves_inversas['rd_rlp_ativo']]
+    dicio['user']['contas_duplicadas_pergunta'] = 'não_cd'
     print(dicio)
     return json.dumps(dicio)
     
