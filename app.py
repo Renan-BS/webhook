@@ -60,7 +60,7 @@ contas_duplicadas = {
 def api_root():
     return 'Tá funcionando!'
 
-@app.route('/update', methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 def respond():
     dados = request.json
     print(dados.keys())
