@@ -67,13 +67,11 @@ def respond():
     print(dados.keys())
     id = getIdFromEmailZendesk(dados['previous']['email'][0]['value'])
     dicio = MontaDicionario(dados['current'])
-    print(id)
-    print(dicio)
     base_url = 'https://bsinvestimentos.zendesk.com/'
     if id is not None:
         time.sleep(1)
         r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), data=dicio, headers={"Content-Type": "application/json"})
-        print(r.json())
+        
         print('teste', r.status_code)
         r.close()
         return Response(status=200)
@@ -97,7 +95,7 @@ def trataTelefone(dado, campo):
 def Ancestors(dado,campo):
     print(dado[chaves_inversas[campo]])
     if dado[chaves_inversas[campo]] is None:
-        return ""
+        return None
     else:
         return dado[chaves_inversas[campo]]['name']
 
