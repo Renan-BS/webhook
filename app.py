@@ -2,6 +2,7 @@ from flask import Flask, request, Response, json
 import httpx
 import re
 import datetime
+import time
 
 app = Flask(__name__)
 
@@ -70,9 +71,11 @@ def respond():
     print(dicio)
     base_url = 'https://bsinvestimentos.zendesk.com/'
     if id is not None:
+        time.sleep(1)
         r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), data=dicio, headers={"Content-Type": "application/json"})
         print(r.json())
         print('teste', r.status_code)
+        r.close()
         return Response(status=200)
     else: 
         return Response(status=200)
@@ -93,11 +96,11 @@ def trataTelefone(dado, campo):
 
 def MontaDicionario(dado):
     dicio = {"user":{'user_fields':{}}}
-    #dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
+    dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
     dicio['user']['user_fields']['cliente_ultima_atualizacao'] = datetime.datetime.now().isoformat()
-    print(dicio)
-    #dicio['user']['user_fields']['cliente_desde'] = dado[chaves_inversas['cliente_desde']]
     
+    dicio['user']['user_fields']['cliente_desde'] = dado[chaves_inversas['cliente_desde']]
+    print(dicio)
     return json.dumps(dicio)
     
 
