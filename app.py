@@ -127,7 +127,7 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['cliente_ultima_atualizacao'] = datetime.datetime.now().isoformat()
     dicio['user']['user_fields']['cliente_desde'] = dado[chaves_inversas['cliente_desde']]
     dicio['user']['sencon_ultimo_credito'] = dado[chaves_inversas['sencon_ultimo_credito']]
-    dicio['user']['nome_cliente'] = dado[chaves_inversas['nome_cliente']]
+    """dicio['user']['nome_cliente'] = dado[chaves_inversas['nome_cliente']]
     dicio['user']['email_xp'] = dado[chaves_inversas['email']][0]['value']
     dicio['user']['atendimento_corporate'] = Ancestors(dado, 'atendimento_corporate')
     dicio['user']['cliente_atendimento_alocacao'] = Ancestors(dado, 'cliente_atendimento_alocacao')
@@ -152,7 +152,7 @@ def MontaDicionario(dado):
     dicio['user']['cod_cliente'] =  dado[chaves_inversas['cod_cliente']]
     dicio['user']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
     dicio['user']['rd_rlp_ativo'] = dado[chaves_inversas['rd_rlp_ativo']]
-    dicio['user']['contas_duplicadas_pergunta'] = 'não_cd'
+    dicio['user']['contas_duplicadas_pergunta'] = 'não_cd'"""
     print(dicio)
     return json.dumps(dicio)
     
