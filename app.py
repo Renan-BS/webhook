@@ -95,6 +95,7 @@ def MontaDicionario(dado):
     dicio = {"user":{'user_fields':{}}}
     #dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
     dicio['user']['user_fields']['cliente_ultima_atualizacao'] = datetime.datetime.now().isoformat()
+    print(dicio)
     #dicio['user']['user_fields']['cliente_desde'] = dado[chaves_inversas['cliente_desde']]
     
     return json.dumps(dicio)
