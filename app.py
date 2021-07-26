@@ -153,7 +153,7 @@ def MontaDicionario(dado):
     dicio['user']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
     dicio['user']['rd_rlp_ativo'] = dado[chaves_inversas['rd_rlp_ativo']]
     dicio['user']['contas_duplicadas_pergunta'] = 'não_cd'"""
-    print(dicio)
+    print(dicio['user']['atendimento_corporate'])
     return json.dumps(dicio)
     
 
