@@ -97,12 +97,21 @@ def retornaUser(id):
         return None
     else: 
         params = {'api_token': 'a52503a959dabeea2bbe0e15a71ab0f0e8f2ba8a'}
-
-
         response = httpx.get(f'https://bsprivate.pipedrive.com/api/v1/users/{id}', params=params)
-
         return response.json()['data']['name']
+
+def retornaCampo(key, id):
     
+    params = {'api_token': 'a52503a959dabeea2bbe0e15a71ab0f0e8f2ba8a'}
+    response = httpx.get(f'https://bsprivate.pipedrive.com/api/v1/personFields', params=params)
+    nome = response.json()
+
+    for n in nome['data']:
+        if n['key'] == key:
+            opcoes = n['options']
+            for opcao in opcoes:
+                if id == opcao['id']:
+                    return opcao['label'] 
 
 def trataFloat(dado, campo):
     if dado[chaves_inversas[campo]] is None:
@@ -141,9 +150,8 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['cliente_atendimento_rv'] = retornaUser(dado[chaves_inversas['cliente_atendimento_rv']])
     dicio['user']['user_fields']['cliente_assessor'] = retornaUser(dado[chaves_inversas['cliente_assessor']])
     dicio['user']['user_fields']['cliente_captado_por'] = retornaUser(dado[chaves_inversas['cliente_captado_por']])
-    dicio['user']['user_fields']['cliente_campanha_atual'] = dado[chaves_inversas['cliente_campanha_atual']]
-    dicio['user']['user_fields']['cliente_campanha_atual'] = dado[chaves_inversas['cliente_campanha_atual']]
-    dicio['user']['user_fields']['cliente_lead'] = dado[chaves_inversas['cliente_lead']]
+    dicio['user']['user_fields']['cliente_campanha_atual'] = retornaCampo(chaves_inversas['cliente_campanha_atual'], dado[chaves_inversas['cliente_campanha_atual']])
+    #dicio['user']['user_fields']['cliente_lead'] = dado[chaves_inversas['cliente_lead']]
     dicio['user']['user_fields']['corretagem_ultimo_mes'] = dado[chaves_inversas['corretagem_ultimo_mes']]
     dicio['user']['user_fields']['cpf_cnpj'] = dado[chaves_inversas['cpf_cnpj']]
     dicio['user']['user_fields']['multiplas_contas'] = dado[chaves_inversas['multiplas_contas']]
@@ -159,7 +167,8 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['cod_cliente'] =  dado[chaves_inversas['cod_cliente']]
     dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
     dicio['user']['user_fields']['rd_rlp_ativo'] = dado[chaves_inversas['rd_rlp_ativo']]
-    dicio['user']['user_fields']['contas_duplicadas_pergunta'] = 'não_cd'"""
+    dicio['user']['user_fields']['contas_duplicadas_pergunta'] = 'não_cd'
+    """
     print(dicio)
     return json.dumps(dicio)
     
