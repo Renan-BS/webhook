@@ -137,6 +137,13 @@ def trataClass(dado, campo, campo2):
         c2 = int(dado[campo2])
     return str(max(c1, c2))
 
+def trataRLP(dado):
+    if dado is None:
+        return None
+    elif dado == '137':
+        return 'sim'
+    else: return 'não'
+    
 def MontaDicionario(dado):
     dicio = {"user":{'user_fields':{}}}
     dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
