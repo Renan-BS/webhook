@@ -129,8 +129,8 @@ def MontaDicionario(dado):
     dicio['user']['sencon_ultimo_credito'] = dado[chaves_inversas['sencon_ultimo_credito']]
     dicio['user']['nome_cliente'] = dado[chaves_inversas['nome_cliente']]
     dicio['user']['email_xp'] = dado[chaves_inversas['email']][0]['value']
-    dicio['user']['atendimento_corporate'] = dado[chaves_inversas['atendimento_corporate']]
-    #dicio['user']['cliente_atendimento_alocacao'] = dado[chaves_inversas['cliente_atendimento_alocacao']]['name']
+    #dicio['user']['atendimento_corporate'] = dado[chaves_inversas['atendimento_corporate']]
+    dicio['user']['cliente_atendimento_alocacao'] = dado[chaves_inversas['cliente_atendimento_alocacao']]['name']
     """dicio['user']['cliente_atendimento_banker'] = Ancestors(dado, 'cliente_atendimento_banker')
     dicio['user']['cliente_atendimento_private'] = Ancestors(dado, 'cliente_atendimento_private')
     dicio['user']['cliente_atendimento_rv'] = Ancestors(dado, 'cliente_atendimento_rv')
@@ -153,7 +153,7 @@ def MontaDicionario(dado):
     dicio['user']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
     dicio['user']['rd_rlp_ativo'] = dado[chaves_inversas['rd_rlp_ativo']]
     dicio['user']['contas_duplicadas_pergunta'] = 'não_cd'"""
-    print(dicio['user']['atendimento_corporate'])
+    print(dicio['user']['cliente_atendimento_alocacao'])
     return json.dumps(dicio)
     
 
