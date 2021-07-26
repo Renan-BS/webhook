@@ -157,6 +157,7 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['corretagem_ultimo_mes'] = dado[chaves_inversas['corretagem_ultimo_mes']]
     dicio['user']['user_fields']['cpf_cnpj'] = dado[chaves_inversas['cpf_cnpj']]
     dicio['user']['user_fields']['multiplas_contas'] = dado[chaves_inversas['multiplas_contas']]
+    dicio['user']['user_fields']['patrimnio_declarado'] = trataFloat(dado, 'patrimnio_declarado')
     """
     dicio['user']['user_fields']['patrimnio_declarado'] = trataFloat(dado, 'patrimnio_declarado')
     dicio['user']['user_fields']['saldo_em_'] = trataFloat(dado, 'saldo_em_')
