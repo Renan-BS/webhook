@@ -130,7 +130,7 @@ def MontaDicionario(dado):
     dicio['user']['nome_cliente'] = dado[chaves_inversas['nome_cliente']]
     dicio['user']['email_xp'] = dado[chaves_inversas['email']][0]['value']
     #dicio['user']['atendimento_corporate'] = dado[chaves_inversas['atendimento_corporate']]
-    dicio['user']['cliente_atendimento_alocacao'] = dado[chaves_inversas['cliente_atendimento_alocacao']]['name']
+    dicio['user']['cliente_atendimento_alocacao'] = dado[chaves_inversas['cliente_atendimento_alocacao']]
     """dicio['user']['cliente_atendimento_banker'] = Ancestors(dado, 'cliente_atendimento_banker')
     dicio['user']['cliente_atendimento_private'] = Ancestors(dado, 'cliente_atendimento_private')
     dicio['user']['cliente_atendimento_rv'] = Ancestors(dado, 'cliente_atendimento_rv')
