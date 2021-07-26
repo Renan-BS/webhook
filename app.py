@@ -148,18 +148,18 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['cpf_cnpj'] = dado[chaves_inversas['cpf_cnpj']]
     dicio['user']['user_fields']['multiplas_contas'] = dado[chaves_inversas['multiplas_contas']]
     """
-    dicio['user']['patrimnio_declarado'] = trataFloat(dado, 'patrimnio_declarado')
-    dicio['user']['saldo_em_'] = trataFloat(dado, 'saldo_em_')
-    dicio['user']['patrimnio_xp'] = trataFloat(dado, 'patrimnio_xp')
-    dicio['user']['status'] = trataStatus(dado, 'status')
-    dicio['user']['cliente_perfil_do_cliente'] = perfil_dict[dado[chaves_inversas['cliente_perfil_do_cliente']]]
-    dicio['user']['sencon_beneficio'] = simnao[dado[chaves_inversas['sencon_beneficio']]]
-    dicio['user']['nivel_classificacao'] = 'nivel_' + trataClass(dado, '9011d0f0a699759b313f5245877fc704926ab064','754d3639b9705d33a4b664ddab5466026597ef60')
-    dicio['user']['whatsapp'] = dado[chaves_inversas['whatsapp']]
-    dicio['user']['cod_cliente'] =  dado[chaves_inversas['cod_cliente']]
-    dicio['user']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
-    dicio['user']['rd_rlp_ativo'] = dado[chaves_inversas['rd_rlp_ativo']]
-    dicio['user']['contas_duplicadas_pergunta'] = 'não_cd'"""
+    dicio['user']['user_fields']['patrimnio_declarado'] = trataFloat(dado, 'patrimnio_declarado')
+    dicio['user']['user_fields']['saldo_em_'] = trataFloat(dado, 'saldo_em_')
+    dicio['user']['user_fields']['patrimnio_xp'] = trataFloat(dado, 'patrimnio_xp')
+    dicio['user']['user_fields']['status'] = trataStatus(dado, 'status')
+    dicio['user']['user_fields']['cliente_perfil_do_cliente'] = perfil_dict[dado[chaves_inversas['cliente_perfil_do_cliente']]]
+    dicio['user']['user_fields']['sencon_beneficio'] = simnao[dado[chaves_inversas['sencon_beneficio']]]
+    dicio['user']['user_fields']['nivel_classificacao'] = 'nivel_' + trataClass(dado, '9011d0f0a699759b313f5245877fc704926ab064','754d3639b9705d33a4b664ddab5466026597ef60')
+    dicio['user']['user_fields']['whatsapp'] = dado[chaves_inversas['whatsapp']]
+    dicio['user']['user_fields']['cod_cliente'] =  dado[chaves_inversas['cod_cliente']]
+    dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
+    dicio['user']['user_fields']['rd_rlp_ativo'] = dado[chaves_inversas['rd_rlp_ativo']]
+    dicio['user']['user_fields']['contas_duplicadas_pergunta'] = 'não_cd'"""
     print(dicio)
     return json.dumps(dicio)
     
