@@ -110,7 +110,7 @@ def retornaCampo(key, id):
         if n['key'] == key:
             opcoes = n['options']
             for opcao in opcoes:
-                if id == opcao['id']:
+                if int(id) == opcao['id']:
                     return opcao['label'] 
 
 def trataFloat(dado, campo):
