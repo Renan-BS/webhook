@@ -126,11 +126,11 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
     dicio['user']['user_fields']['cliente_ultima_atualizacao'] = datetime.datetime.now().isoformat()
     dicio['user']['user_fields']['cliente_desde'] = dado[chaves_inversas['cliente_desde']]
-    dicio['user']['sencon_ultimo_credito'] = dado[chaves_inversas['sencon_ultimo_credito']]
-    dicio['user']['nome_cliente'] = dado[chaves_inversas['nome_cliente']]
-    dicio['user']['email_xp'] = dado[chaves_inversas['email']][0]['value']
+    dicio['user']['user_fields']['sencon_ultimo_credito'] = dado[chaves_inversas['sencon_ultimo_credito']]
+    dicio['user']['user_fields']['nome_cliente'] = dado[chaves_inversas['nome_cliente']]
+    dicio['user']['user_fields']['email_xp'] = dado[chaves_inversas['email']][0]['value']
     #dicio['user']['atendimento_corporate'] = dado[chaves_inversas['atendimento_corporate']]
-    dicio['user']['cliente_atendimento_alocacao'] = dado[chaves_inversas['cliente_atendimento_alocacao']]
+    dicio['user']['user_fields']['cliente_atendimento_alocacao'] = dado[chaves_inversas['cliente_atendimento_alocacao']]
     """dicio['user']['cliente_atendimento_banker'] = Ancestors(dado, 'cliente_atendimento_banker')
     dicio['user']['cliente_atendimento_private'] = Ancestors(dado, 'cliente_atendimento_private')
     dicio['user']['cliente_atendimento_rv'] = Ancestors(dado, 'cliente_atendimento_rv')
