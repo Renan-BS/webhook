@@ -158,10 +158,9 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['cpf_cnpj'] = dado[chaves_inversas['cpf_cnpj']]
     dicio['user']['user_fields']['multiplas_contas'] = dado[chaves_inversas['multiplas_contas']]
     dicio['user']['user_fields']['patrimnio_declarado'] = trataFloat(dado, 'patrimnio_declarado')
-    """
-    dicio['user']['user_fields']['patrimnio_declarado'] = trataFloat(dado, 'patrimnio_declarado')
-    dicio['user']['user_fields']['saldo_em_'] = trataFloat(dado, 'saldo_em_')
     dicio['user']['user_fields']['patrimnio_xp'] = trataFloat(dado, 'patrimnio_xp')
+    dicio['user']['user_fields']['saldo_em_'] = trataFloat(dado, 'saldo_em_')
+    """
     dicio['user']['user_fields']['status'] = trataStatus(dado, 'status')
     dicio['user']['user_fields']['cliente_perfil_do_cliente'] = perfil_dict[dado[chaves_inversas['cliente_perfil_do_cliente']]]
     dicio['user']['user_fields']['sencon_beneficio'] = simnao[dado[chaves_inversas['sencon_beneficio']]]
