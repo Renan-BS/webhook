@@ -140,14 +140,14 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['cliente_atendimento_private'] = retornaUser(dado[chaves_inversas['cliente_atendimento_private']])
     dicio['user']['user_fields']['cliente_atendimento_rv'] = retornaUser(dado[chaves_inversas['cliente_atendimento_rv']])
     dicio['user']['user_fields']['cliente_assessor'] = retornaUser(dado[chaves_inversas['cliente_assessor']])
+    dicio['user']['cliente_captado_por'] = retornaUser(dado[chaves_inversas['cliente_captado_por']])
     dicio['user']['user_fields']['cliente_campanha_atual'] = dado[chaves_inversas['cliente_campanha_atual']]
-    """
     dicio['user']['cliente_campanha_atual'] = dado[chaves_inversas['cliente_campanha_atual']]
-    dicio['user']['cliente_captado_por'] = Ancestors(dado, 'cliente_captado_por')
     dicio['user']['cliente_lead'] = dado[chaves_inversas['cliente_lead']]
     dicio['user']['corretagem_ultimo_mes'] = dado[chaves_inversas['corretagem_ultimo_mes']]
     dicio['user']['cpf_cnpj'] = dado[chaves_inversas['cpf_cnpj']]
     dicio['user']['multiplas_contas'] = dado[chaves_inversas['multiplas_contas']]
+    """
     dicio['user']['patrimnio_declarado'] = trataFloat(dado, 'patrimnio_declarado')
     dicio['user']['saldo_em_'] = trataFloat(dado, 'saldo_em_')
     dicio['user']['patrimnio_xp'] = trataFloat(dado, 'patrimnio_xp')
@@ -160,7 +160,7 @@ def MontaDicionario(dado):
     dicio['user']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
     dicio['user']['rd_rlp_ativo'] = dado[chaves_inversas['rd_rlp_ativo']]
     dicio['user']['contas_duplicadas_pergunta'] = 'não_cd'"""
-    print(dicio['user']['user_fields']['cliente_atendimento_alocacao'])
+    print(dicio)
     return json.dumps(dicio)
     
 
