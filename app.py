@@ -137,9 +137,11 @@ def MontaDicionario(dado):
     #dicio['user']['atendimento_corporate'] = dado[chaves_inversas['atendimento_corporate']]
     dicio['user']['user_fields']['cliente_atendimento_alocacao'] = retornaUser(dado[chaves_inversas['cliente_atendimento_alocacao']])
     dicio['user']['user_fields']['cliente_atendimento_banker'] = retornaUser(dado[chaves_inversas['cliente_atendimento_banker']])
-    """dicio['user']['cliente_atendimento_private'] = Ancestors(dado, 'cliente_atendimento_private')
-    dicio['user']['cliente_atendimento_rv'] = Ancestors(dado, 'cliente_atendimento_rv')
-    dicio['user']['cliente_assessor'] = Ancestors(dado, 'cliente_assessor')
+    dicio['user']['user_fields']['cliente_atendimento_private'] = retornaUser(dado[chaves_inversas['cliente_atendimento_private']])
+    dicio['user']['user_fields']['cliente_atendimento_rv'] = retornaUser(dado[chaves_inversas['cliente_atendimento_rv']])
+    dicio['user']['user_fields']['cliente_assessor'] = retornaUser(dado[chaves_inversas['cliente_assessor']])
+    dicio['user']['user_fields']['cliente_campanha_atual'] = dado[chaves_inversas['cliente_campanha_atual']]
+    """
     dicio['user']['cliente_campanha_atual'] = dado[chaves_inversas['cliente_campanha_atual']]
     dicio['user']['cliente_captado_por'] = Ancestors(dado, 'cliente_captado_por')
     dicio['user']['cliente_lead'] = dado[chaves_inversas['cliente_lead']]
