@@ -161,7 +161,6 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['saldo_em_'] = trataFloat(dado, 'saldo_em_')
     dicio['user']['user_fields']['status'] = trataStatus(dado, 'status')
     dicio['user']['user_fields']['cliente_perfil_do_cliente'] = perfil_dict[dado[chaves_inversas['cliente_perfil_do_cliente']]]
-    """
     dicio['user']['user_fields']['sencon_beneficio'] = simnao[dado[chaves_inversas['sencon_beneficio']]]
     dicio['user']['user_fields']['nivel_classificacao'] = 'nivel_' + trataClass(dado, '9011d0f0a699759b313f5245877fc704926ab064','754d3639b9705d33a4b664ddab5466026597ef60')
     dicio['user']['user_fields']['whatsapp'] = dado[chaves_inversas['whatsapp']]
@@ -169,6 +168,8 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
     dicio['user']['user_fields']['rd_rlp_ativo'] = dado[chaves_inversas['rd_rlp_ativo']]
     dicio['user']['user_fields']['contas_duplicadas_pergunta'] = 'não_cd'
+    """
+    
     """
     print(dicio)
     return json.dumps(dicio)
