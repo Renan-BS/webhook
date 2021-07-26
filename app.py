@@ -92,12 +92,17 @@ def trataTelefone(dado, campo):
             valor = '55' + valor 
             return int(valor)"""
 
-def Ancestors(dado,campo):
-    print(dado[chaves_inversas[campo]])
-    if dado[chaves_inversas[campo]] is None:
+def retornaUser(id):
+    if id is None:
         return None
-    else:
-        return dado[chaves_inversas[campo]]['name']
+    else: 
+        params = {'api_token': 'a52503a959dabeea2bbe0e15a71ab0f0e8f2ba8a'}
+
+
+        response = httpx.get(f'https://bsprivate.pipedrive.com/api/v1/users/{id}', params=params)
+
+        return response.json()['data']['name']
+    
 
 def trataFloat(dado, campo):
     if dado[chaves_inversas[campo]] is None:
@@ -130,9 +135,9 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['nome_cliente'] = dado[chaves_inversas['nome_cliente']]
     dicio['user']['user_fields']['email_xp'] = dado[chaves_inversas['email']][0]['value']
     #dicio['user']['atendimento_corporate'] = dado[chaves_inversas['atendimento_corporate']]
-    dicio['user']['user_fields']['cliente_atendimento_alocacao'] = dado[chaves_inversas['cliente_atendimento_alocacao']]
-    """dicio['user']['cliente_atendimento_banker'] = Ancestors(dado, 'cliente_atendimento_banker')
-    dicio['user']['cliente_atendimento_private'] = Ancestors(dado, 'cliente_atendimento_private')
+    dicio['user']['user_fields']['cliente_atendimento_alocacao'] = retornaUser(dado[chaves_inversas['cliente_atendimento_alocacao']])
+    dicio['user']['user_fields']['cliente_atendimento_banker'] = retornaUser(dado[chaves_inversas['cliente_atendimento_banker']])
+    """dicio['user']['cliente_atendimento_private'] = Ancestors(dado, 'cliente_atendimento_private')
     dicio['user']['cliente_atendimento_rv'] = Ancestors(dado, 'cliente_atendimento_rv')
     dicio['user']['cliente_assessor'] = Ancestors(dado, 'cliente_assessor')
     dicio['user']['cliente_campanha_atual'] = dado[chaves_inversas['cliente_campanha_atual']]
