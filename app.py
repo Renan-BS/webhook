@@ -145,7 +145,6 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['sencon_ultimo_credito'] = dado[chaves_inversas['sencon_ultimo_credito']]
     dicio['user']['user_fields']['nome_cliente'] = dado[chaves_inversas['nome_cliente']]
     dicio['user']['user_fields']['email_xp'] = dado[chaves_inversas['email']][0]['value']
-    #dicio['user']['atendimento_corporate'] = dado[chaves_inversas['atendimento_corporate']]
     dicio['user']['user_fields']['cliente_atendimento_alocacao'] = retornaUser(dado[chaves_inversas['cliente_atendimento_alocacao']])
     dicio['user']['user_fields']['cliente_atendimento_banker'] = retornaUser(dado[chaves_inversas['cliente_atendimento_banker']])
     dicio['user']['user_fields']['cliente_atendimento_private'] = retornaUser(dado[chaves_inversas['cliente_atendimento_private']])
@@ -160,6 +159,7 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['patrimnio_declarado'] = trataFloat(dado, 'patrimnio_declarado')
     dicio['user']['user_fields']['patrimnio_xp'] = trataFloat(dado, 'patrimnio_xp')
     dicio['user']['user_fields']['saldo_em_'] = trataFloat(dado, 'saldo_em_')
+    dicio['user']['user_fields']['status'] = trataStatus(dado, 'status')
     """
     dicio['user']['user_fields']['status'] = trataStatus(dado, 'status')
     dicio['user']['user_fields']['cliente_perfil_do_cliente'] = perfil_dict[dado[chaves_inversas['cliente_perfil_do_cliente']]]
