@@ -69,7 +69,7 @@ def respond():
     base_url = 'https://bsinvestimentos.zendesk.com/'
     if id is not None:
         time.sleep(1)
-        r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), data=dicio, headers={"Content-Type": "application/json"})
+        r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)
         
         print('teste', r.status_code)
         r.close()
