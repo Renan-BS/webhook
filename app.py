@@ -64,7 +64,6 @@ def api_root():
 @app.route('/update', methods=['POST'])
 def respond():
     dados = request.json
-    print(dados.keys())
     id = getIdFromEmailZendesk(dados['previous']['email'][0]['value'])
     dicio = MontaDicionario(dados['current'])
     base_url = 'https://bsinvestimentos.zendesk.com/'
@@ -101,7 +100,7 @@ def retornaUser(id):
         params = {'api_token': 'a52503a959dabeea2bbe0e15a71ab0f0e8f2ba8a'}
         response = httpx.get(f'https://bsprivate.pipedrive.com/api/v1/users/{id}', params=params)
         print(response.json())
-        print(response.json().keys(0))
+        print(response.json().keys())
         return response.json()['data']['name']
 
 def retornaCampo(key, id):
@@ -179,7 +178,6 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
     dicio['user']['user_fields']['rd_rlp_ativo'] = trataRLP(dado[chaves_inversas['rd_rlp_ativo']])
     dicio['user']['user_fields']['contas_duplicadas_pergunta'] = 'não_cd'
-    print(dicio)
     return json.dumps(dicio)
     
 
