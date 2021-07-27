@@ -96,14 +96,20 @@ def retornaUser(id):
         return None
     else:
         params = {'api_token': 'f5724d6764a62d7f69b76fa8eb2a0be11671ab32'}
+        time.sleep(2)
         response = httpx.get(f'https://bsprivate.pipedrive.com/api/v1/users/{id}', params=params)
-        return response.json()['data']['name']
+        dado = response.json()['data']['name']
+        response.close()
+        return 
 
 def retornaCampo(key, id):
     
     params = {'api_token': 'f5724d6764a62d7f69b76fa8eb2a0be11671ab32'}
+    time.sleep(2)
     response = httpx.get(f'https://bsprivate.pipedrive.com/api/v1/personFields', params=params)
+    
     nome = response.json()
+    response.close()
     if id is None:
         return None
     else:
