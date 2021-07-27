@@ -101,7 +101,7 @@ def retornaUser(id):
 
 def retornaCampo(key, id):
     
-    params = {'api_token': 'a52503a959dabeea2bbe0e15a71ab0f0e8f2ba8a'}
+    params = {'api_token': 'f5724d6764a62d7f69b76fa8eb2a0be11671ab32'}
     response = httpx.get(f'https://bsprivate.pipedrive.com/api/v1/personFields', params=params)
     nome = response.json()
     if id is None:
