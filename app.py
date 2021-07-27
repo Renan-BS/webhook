@@ -100,7 +100,7 @@ def retornaUser(id):
         response = httpx.get(f'https://bsprivate.pipedrive.com/api/v1/users/{id}', params=params)
         dado = response.json()['data']['name']
         response.close()
-        return 
+        return dado
 
 def retornaCampo(key, id):
     
