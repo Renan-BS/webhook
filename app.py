@@ -1,10 +1,14 @@
 from flask import Flask, request, Response, json
+from celery import Celery
 import httpx
 import re
 import datetime
 import time
 
-app = Flask(__name__)
+flask_app = Flask(__name__)
+celery_app = Celery(__name__)
+celery_app.config_from_object('celery_settings')
+
 
 chaves = {
     '0a2c56b54cfb002b1baeb40d8ae71ea82d92dff1': 'cliente_desde',
@@ -57,23 +61,26 @@ contas_duplicadas = {
     'Não': 'nao_cd'
 }
 
-@app.route('/')
+@celery_app.task
+def update(id, dados):
+    dicio = MontaDicionario(dados['current'])
+    base_url = 'https://bsinvestimentos.zendesk.com/'
+    r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
+    print('teste', r.status_code)
+    r.close()
+    return Response(status=200)
+
+@flask_app.route('/')
 def api_root():
     return 'Tá funcionando!'
 
-@app.route('/update', methods=['POST'])
+@flask_app.route('/update', methods=['POST'])
 def respond():
     dados = request.json
     id = getIdFromEmailZendesk(dados['previous']['email'][0]['value'])
-    dicio = MontaDicionario(dados['current'])
-    base_url = 'https://bsinvestimentos.zendesk.com/'
     if id is not None:
         time.sleep(1)
-        r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)
-        
-        print('teste', r.status_code)
-        r.close()
-        return Response(status=200)
+        update(id, dados)
     else: 
         return Response(status=200)
 
@@ -196,4 +203,4 @@ def getIdFromEmailZendesk(email):
         return id
    
 if __name__=='__main__':
-    app.run()
+    flask_app.run()
