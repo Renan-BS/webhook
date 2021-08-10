@@ -81,6 +81,7 @@ def respond():
     if id is not None:
         time.sleep(1)
         update(id, dados)
+        return Response(status=200)
     else: 
         return Response(status=200)
 
