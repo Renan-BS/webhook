@@ -65,7 +65,7 @@ contas_duplicadas = {
 def update(id, dados):
     dicio = MontaDicionario(dados['current'])
     base_url = 'https://bsinvestimentos.zendesk.com/'
-    r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
+    r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
     print('teste', r.status_code)
     r.close()
     return Response(status=200)
@@ -195,7 +195,7 @@ def getIdFromEmailZendesk(email):
     base_url = 'https://bsinvestimentos.zendesk.com/'
     headers = {"Content-Type": "application/json"}
     params = {'role': 'end-user'}
-    r = httpx.get(base_url + f'/api/v2/search?query=email:{email}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), headers=headers, params=params, timeout=None)
+    r = httpx.get(base_url + f'/api/v2/search?query=email:{email}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), headers=headers, params=params, timeout=None)
     id = r.json()['results'][0]['id']
     if id is None:
         return None
