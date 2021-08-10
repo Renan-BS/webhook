@@ -188,7 +188,6 @@ def MontaDicionario(dado):
     dicio['user']['user_fields']['telefone'] = trataTelefone(dado, '657af87f9622875cde313deb4d10ad274ca6aa04')
     dicio['user']['user_fields']['rd_rlp_ativo'] = trataRLP(dado[chaves_inversas['rd_rlp_ativo']])
     dicio['user']['user_fields']['contas_duplicadas_pergunta'] = 'não_cd'
-    print(dicio)
     return json.dumps(dicio)
     
 
@@ -197,7 +196,7 @@ def getIdFromEmailZendesk(email):
     headers = {"Content-Type": "application/json"}
     params = {'role': 'end-user'}
     r = httpx.get(base_url + f'/api/v2/search?query=email:{email}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), headers=headers, params=params, timeout=None)
-    print(email, r.json())
+    
     id = r.json()['results'][0]['id']
     if id is None:
         return None
