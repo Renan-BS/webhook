@@ -196,10 +196,7 @@ def getIdFromEmailZendesk(email):
     headers = {"Content-Type": "application/json"}
     params = {'role': 'end-user'}
     r = httpx.get(base_url + f'/api/v2/search?query=email:{email}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'bs@2021'), headers=headers, params=params, timeout=None)
-    try:
-        id = r.json()['results'][0]['id']
-    except:
-        id=None
+    id = r.json()['results'][0]['id']
     if id is None:
         return None
     else: 
