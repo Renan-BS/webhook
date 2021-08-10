@@ -66,7 +66,7 @@ def update(id, dados):
     dicio = MontaDicionario(dados['current'])
     base_url = 'https://bsinvestimentos.zendesk.com/'
     r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
-    print('teste', r.status_code)
+    print('Deu certo Porra', r.status_code)
     r.close()
     return Response(status=200)
 
