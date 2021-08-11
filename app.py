@@ -61,15 +61,20 @@ contas_duplicadas = {
     'Não': 'nao_cd'
 }
 
-@celery_app.task()
-def update(id, dados):
+@celery_app.task(bind=True)
+def update(self, id, dados):
     dicio = MontaDicionario(dados['current'])
     base_url = 'https://bsinvestimentos.zendesk.com/'
-    print(id)
-    r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
-    print('Deu certo Porra', r.status_code)
+    try:
+        r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
+    except:
+        self.retry()
+        
+    if r.status_code == 200:
+        print(id, 'Deu certo Porra')
+    else:
+        print('Erro de código', r.status_code)
     r.close()
-    return Response(status=200)
 
 @flask_app.route('/')
 def api_root():
@@ -198,7 +203,10 @@ def getIdFromEmailZendesk(email):
     params = {'role': 'end-user'}
     r = httpx.get(base_url + f'/api/v2/search?query=email:{email}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), headers=headers, params=params, timeout=None)
     
-    id = r.json()['results'][0]['id']
+    try:
+        id = r.json()['results'][0]['id']
+    except:
+        print(email, ' nao encontrado')
     if id is None:
         return None
     else: 
