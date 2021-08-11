@@ -212,4 +212,4 @@ def getIdFromEmailZendesk(email):
         return None
    
 if __name__=='__main__':
-    flask_app.delay()
+    flask_app.run()
