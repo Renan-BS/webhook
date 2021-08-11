@@ -62,7 +62,7 @@ contas_duplicadas = {
 }
 
 @celery_app.task(bind=True)
-def update(id, dados):
+def update(self, id, dados):
     dicio = MontaDicionario(dados['current'])
     base_url = 'https://bsinvestimentos.zendesk.com/'
     print('to aqui', id, dados)
