@@ -62,21 +62,18 @@ contas_duplicadas = {
 }
 
 @celery_app.task(bind=True)
-def update(self, id, dados):
+def update(id, dados):
     dicio = MontaDicionario(dados['current'])
     base_url = 'https://bsinvestimentos.zendesk.com/'
     print(id, dados)
-    try:
-        r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
-        if r.status_code == 200:
-            print(id, 'Deu certo Porra')
-        else:
-            print('Erro de código', r.status_code)
-        r.close()
-        return Response(status=200)
-    except:
-        self.retry()
-        
+    r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
+    if r.status_code == 200:
+        print(id, 'Deu certo Porra')
+    else:
+        print('Erro de código', r.status_code)
+    r.close()
+    return Response(status=200)
+    
     
 
 @flask_app.route('/')
@@ -89,7 +86,7 @@ def respond():
     id = getIdFromEmailZendesk(dados['previous']['email'][0]['value'])
     if id is not None:
         time.sleep(1)
-        update.delay(id=id, dados=dados)
+        update.delay(id, dados)
         return Response(status=200)
     else: 
         return Response(status=200)
