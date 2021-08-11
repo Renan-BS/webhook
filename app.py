@@ -65,6 +65,7 @@ contas_duplicadas = {
 def update(id, dados):
     dicio = MontaDicionario(dados['current'])
     base_url = 'https://bsinvestimentos.zendesk.com/'
+    print(id)
     r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
     print('Deu certo Porra', r.status_code)
     r.close()
@@ -80,7 +81,7 @@ def respond():
     id = getIdFromEmailZendesk(dados['previous']['email'][0]['value'])
     if id is not None:
         time.sleep(1)
-        update(id, dados)
+        update(id, dados).delay()
         return Response(status=200)
     else: 
         return Response(status=200)
