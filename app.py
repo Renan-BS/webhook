@@ -206,7 +206,7 @@ def getIdFromEmailZendesk(email):
     try:
         id = r.json()['results'][0]['id']
     except:
-        print(email, ' nao encontrado')
+        print(email, 'nao encontrado')
     if id is None:
         return None
     else: 
