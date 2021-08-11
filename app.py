@@ -75,6 +75,7 @@ def update(self, id, dados):
     else:
         print('Erro de código', r.status_code)
     r.close()
+    return Response(status=200)
 
 @flask_app.route('/')
 def api_root():
