@@ -206,12 +206,10 @@ def getIdFromEmailZendesk(email):
     
     try:
         id = r.json()['results'][0]['id']
+        return id
     except:
         print(email, 'nao encontrado')
-    if id is None:
         return None
-    else: 
-        return id
    
 if __name__=='__main__':
     flask_app.run()
