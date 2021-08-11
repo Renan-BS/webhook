@@ -1,1 +1,2 @@
-worker: celery worker --app=celery_app.app
+web: gunicorn app:flask_app
+worker: celery worker --app=celery_app.celery
