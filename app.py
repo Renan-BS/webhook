@@ -65,17 +65,18 @@ contas_duplicadas = {
 def update(self, id, dados):
     dicio = MontaDicionario(dados['current'])
     base_url = 'https://bsinvestimentos.zendesk.com/'
-    print('to aqui', id, dados)
-    r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
-    if r.status_code == 200:
-        print(id, 'Deu certo Porra')
-    else:
-        print('Erro de código', r.status_code)
-    r.close()
-    return Response(status=200)
+    print('to aqui', id)
+    try:
+        r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
+        if r.status_code == 200:
+            print(id, 'Deu certo Porra')
+        else:
+            print('Erro de código', r.status_code)
+        r.close()
+        return Response(status=200)
+    except:
+        self.retry()
     
-    
-
 @flask_app.route('/')
 def api_root():
     return 'Tá funcionando!'
