@@ -86,6 +86,7 @@ def respond():
     id = getIdFromEmailZendesk(dados['previous']['email'][0]['value'])
     if id is not None:
         time.sleep(1)
+        print(id)
         update.delay(id, dados)
         return Response(status=200)
     else: 
@@ -205,7 +206,6 @@ def getIdFromEmailZendesk(email):
     
     try:
         id = r.json()['results'][0]['id']
-        print(id)
         return id
     except:
         print(email, 'nao encontrado')
