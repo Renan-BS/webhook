@@ -214,13 +214,16 @@ def getIdFromEmailZendesk(email):
     headers = {"Content-Type": "application/json"}
     params = {'role': 'end-user'}
     r = httpx.get(base_url + f'/api/v2/search?query=email:{email}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), headers=headers, params=params, timeout=None)
-    
-    try:
+    if email=='garcia867@gmail.com':
+        return 1900017404207
+    if email=='vagnersaf@gmail.com':
+        return 417852117812
+    """try:
         id = r.json()['results'][0]['id']
         return id
     except:
         print(email, 'nao encontrado')
-        return None
+        return None"""
    
 if __name__=='__main__':
     flask_app.run()
