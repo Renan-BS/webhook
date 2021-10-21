@@ -66,7 +66,7 @@ def update(id, dados):
     base_url = 'https://bsinvestimentos.zendesk.com/'
     print('to aqui', id)
    
-    r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
+    r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'Bs@2021'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
     if r.status_code == 200:
         print(id, 'Deu certo Porra')
     else:
@@ -79,7 +79,7 @@ def update_dado(id, dados):
     base_url = 'https://bsinvestimentos.zendesk.com/'
     print('to aqui', id)
    
-    r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'blu3st4r'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
+    r = httpx.put(base_url+f'/api/v2/users/{id}', auth=('gustavo.garcia@bsinvestimentos.com.br', 'Bs@2021'), data=dicio, headers={"Content-Type": "application/json"}, timeout=None)    
     if r.status_code == 200:
         print(id, 'Deu certo!')
     else:
