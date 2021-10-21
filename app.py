@@ -218,6 +218,12 @@ def getIdFromEmailZendesk(email):
         return 1900017404207
     if email=='vagnersaf@gmail.com':
         return 417852117812
+    if email=='vinicius.oliv@gmail.com':
+        return 417852117612
+    if email=='vinicius.cpbo@gmail.com':
+        return 417852117632
+    if email=='demeluz35@gmail.com':
+        return 417852117792
     """try:
         id = r.json()['results'][0]['id']
         return id
